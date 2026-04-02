@@ -42,10 +42,12 @@ nav a{
   padding:40px;
 }
 
+/* IMAGE */
 img{
   width:320px;
   border-radius:10px;
-  transition:0.3s;
+  transition: all 0.3s ease;
+  opacity:1;
 }
 img:hover{
   transform:scale(1.05);
@@ -85,13 +87,11 @@ button:hover{
 </nav>
 </header>
 
-<!-- HERO -->
 <section class="hero" id="home">
 <h1>ENTER THE VOID</h1>
 <p>Train in silence. Built different.</p>
 </section>
 
-<!-- SHOP -->
 <section class="container" id="shop">
 
 <h2>VOID V1</h2>
@@ -101,7 +101,6 @@ button:hover{
 
 <br>
 
-<!-- COLOR -->
 <select id="color" onchange="changeColor()">
 <option value="">Select Color</option>
 <option value="obsidian">OBSIDIAN VOID</option>
@@ -109,7 +108,6 @@ button:hover{
 <option value="electric">ELECTRIC VOID</option>
 </select>
 
-<!-- SIZE -->
 <select id="size">
 <option value="">Select Size</option>
 <option>S</option>
@@ -129,8 +127,11 @@ button:hover{
 let currentColor = "obsidian";
 let currentView = "front";
 
+const image = document.getElementById("productImage");
+
 function changeColor(){
-  currentColor = document.getElementById("color").value;
+  const select = document.getElementById("color");
+  currentColor = select.value;
   currentView = "front";
   updateImage();
 }
@@ -141,17 +142,29 @@ function toggleView(){
 }
 
 function updateImage(){
-  document.getElementById("productImage").src = currentColor + "_" + currentView + ".png";
+  const newSrc = currentColor + "_" + currentView + ".png";
+
+  image.style.opacity = 0;
+
+  setTimeout(() => {
+    image.src = newSrc;
+    image.onerror = () => {
+      image.src = "obsidian_front.png";
+    };
+    image.style.opacity = 1;
+  }, 200);
 }
 
 function buyNow(){
   const size = document.getElementById("size").value;
-  const colorText = document.getElementById("color").options[document.getElementById("color").selectedIndex].text;
+  const colorSelect = document.getElementById("color");
 
   if(!size || !currentColor){
     alert("Please select size and color");
     return;
   }
+
+  const colorText = colorSelect.options[colorSelect.selectedIndex].text;
 
   const message = `🔥 K-VOID ORDER
 Product: VOID V1
