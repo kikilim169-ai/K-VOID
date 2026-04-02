@@ -1,18 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>K-VOID</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K-VOID</title>
+
 <style>
-body{background:black;color:white;font-family:Arial;margin:0}
-header{display:flex;justify-content:space-between;padding:20px;border-bottom:1px solid #222}
-nav a{margin-left:20px;color:white;text-decoration:none}
-section{padding:60px;text-align:center}
-img{width:320px;border-radius:10px;transition:0.3s}
-img:hover{transform:scale(1.05)}
-select,button{padding:10px;margin:10px;background:black;color:white;border:1px solid #333}
-button{background:white;color:black;font-weight:bold}
+body{
+  margin:0;
+  font-family:Arial;
+  background:black;
+  color:white;
+}
+
+/* NAV */
+header{
+  display:flex;
+  justify-content:space-between;
+  padding:20px;
+  border-bottom:1px solid #222;
+}
+nav a{
+  color:white;
+  margin-left:20px;
+  text-decoration:none;
+}
+
+/* HERO */
+.hero{
+  text-align:center;
+  padding:80px 20px;
+}
+.hero h1{
+  font-size:40px;
+  letter-spacing:4px;
+}
+
+/* SHOP */
+.container{
+  text-align:center;
+  padding:40px;
+}
+
+img{
+  width:320px;
+  border-radius:10px;
+  transition:0.3s;
+}
+img:hover{
+  transform:scale(1.05);
+}
+
+/* FORM */
+select,button{
+  margin:10px;
+  padding:12px;
+  width:220px;
+  background:black;
+  color:white;
+  border:1px solid #333;
+}
+
+button{
+  background:white;
+  color:black;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#ccc;
+}
 </style>
 </head>
 
@@ -27,26 +85,31 @@ button{background:white;color:black;font-weight:bold}
 </nav>
 </header>
 
-<section id="home">
+<!-- HERO -->
+<section class="hero" id="home">
 <h1>ENTER THE VOID</h1>
-<p>Train in the dark. Built different.</p>
+<p>Train in silence. Built different.</p>
 </section>
 
-<section id="shop">
+<!-- SHOP -->
+<section class="container" id="shop">
+
 <h2>VOID V1</h2>
 <p>$20.99 USD</p>
 
-<img id="img" src="obsidian_front.png">
+<img id="productImage" src="obsidian_front.png">
 
 <br>
 
-<select onchange="changeColor(this.value)">
+<!-- COLOR -->
+<select id="color" onchange="changeColor()">
 <option value="">Select Color</option>
 <option value="obsidian">OBSIDIAN VOID</option>
 <option value="pale">PALE VOID</option>
 <option value="electric">ELECTRIC VOID</option>
 </select>
 
+<!-- SIZE -->
 <select id="size">
 <option value="">Select Size</option>
 <option>S</option>
@@ -57,36 +120,46 @@ button{background:white;color:black;font-weight:bold}
 
 <br>
 
-<button onclick="toggleView()">Switch Front/Back</button>
-<button onclick="buy()">Buy Now</button>
+<button onclick="toggleView()">Switch Front / Back</button>
+<button onclick="buyNow()">Buy Now</button>
 
 </section>
 
 <script>
-let currentColor="obsidian";
-let view="front";
+let currentColor = "obsidian";
+let currentView = "front";
 
-function changeColor(c){
-currentColor=c;
-view="front";
-updateImage();
+function changeColor(){
+  currentColor = document.getElementById("color").value;
+  currentView = "front";
+  updateImage();
 }
 
 function toggleView(){
-view = view==="front"?"back":"front";
-updateImage();
+  currentView = currentView === "front" ? "back" : "front";
+  updateImage();
 }
 
 function updateImage(){
-let img=document.getElementById("img");
-img.src=currentColor+"_"+view+".png";
+  document.getElementById("productImage").src = currentColor + "_" + currentView + ".png";
 }
 
-function buy(){
-let size=document.getElementById("size").value;
-if(!size||!currentColor){alert("Select size & color");return;}
-let msg=`Order VOID V1 | ${currentColor.toUpperCase()} | Size: ${size}`;
-window.open("https://wa.me/?text="+encodeURIComponent(msg));
+function buyNow(){
+  const size = document.getElementById("size").value;
+  const colorText = document.getElementById("color").options[document.getElementById("color").selectedIndex].text;
+
+  if(!size || !currentColor){
+    alert("Please select size and color");
+    return;
+  }
+
+  const message = `🔥 K-VOID ORDER
+Product: VOID V1
+Color: ${colorText}
+Size: ${size}
+Price: $20.99 USD`;
+
+  window.open("https://wa.me/?text=" + encodeURIComponent(message));
 }
 </script>
 
