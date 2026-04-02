@@ -1,18 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>K-VOID</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-body{background:black;color:white;font-family:Arial;text-align:center;}
-img{width:320px;border-radius:10px;}
-select,button{padding:10px;margin:10px;}
+body{background:black;color:white;font-family:Arial;margin:0}
+header{display:flex;justify-content:space-between;padding:20px;border-bottom:1px solid #222}
+.logo{font-weight:bold}
+.container{padding:40px;text-align:center}
+img{width:320px;border-radius:10px;transition:0.3s}
+img:hover{transform:scale(1.05)}
+select,button{padding:10px;margin:10px;background:black;color:white;border:1px solid #333}
+button{background:white;color:black;font-weight:bold}
 </style>
 </head>
+
 <body>
 
-<h1>K-VOID</h1>
-<h2>VOID V1</h2>
+<header>
+<div class="logo">K-VOID</div>
+<div><a href="#" style="color:white;margin-right:10px">Home</a></div>
+</header>
+
+<div class="container">
+
+<h1>VOID V1</h1>
 <p>$20.99 USD</p>
 
 <img id="img" src="obsidian_front.png">
@@ -26,7 +39,8 @@ select,button{padding:10px;margin:10px;}
 <option value="electric">ELECTRIC VOID</option>
 </select>
 
-<select>
+<select id="size">
+<option value="">Select Size</option>
 <option>S</option>
 <option>M</option>
 <option>L</option>
@@ -35,18 +49,36 @@ select,button{padding:10px;margin:10px;}
 
 <br>
 
+<button onclick="toggleView()">Switch Front/Back</button>
 <button onclick="buy()">Buy Now</button>
 
+</div>
+
 <script>
+let currentColor="obsidian";
+let view="front";
+
 function changeColor(c){
+currentColor=c;
+view="front";
+updateImage();
+}
+
+function toggleView(){
+view = view==="front"?"back":"front";
+updateImage();
+}
+
+function updateImage(){
 let img=document.getElementById("img");
-if(c==="obsidian") img.src="obsidian_front.png";
-if(c==="pale") img.src="pale_front.png";
-if(c==="electric") img.src="electric_front.png";
+img.src=currentColor+"_"+view+".png";
 }
 
 function buy(){
-alert("Order request sent!");
+let size=document.getElementById("size").value;
+if(!size||!currentColor){alert("Select size & color");return;}
+let msg=`Order VOID V1 | ${currentColor.toUpperCase()} | Size: ${size}`;
+window.open("https://wa.me/?text="+encodeURIComponent(msg));
 }
 </script>
 
