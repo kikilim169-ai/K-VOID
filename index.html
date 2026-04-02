@@ -1,86 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>K-VOID</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-body{background:black;color:white;font-family:Arial;margin:0}
-header{display:flex;justify-content:space-between;padding:20px;border-bottom:1px solid #222}
-.logo{font-weight:bold}
-.container{padding:40px;text-align:center}
-img{width:320px;border-radius:10px;transition:0.3s}
-img:hover{transform:scale(1.05)}
-select,button{padding:10px;margin:10px;background:black;color:white;border:1px solid #333}
-button{background:white;color:black;font-weight:bold}
-</style>
-</head>
-
-<body>
-
-<header>
-<div class="logo">K-VOID</div>
-<div><a href="#" style="color:white;margin-right:10px">Home</a></div>
-</header>
-
-<div class="container">
-
-<h1>VOID V1</h1>
-<p>$20.99 USD</p>
-
-<img id="img" src="obsidian_front.png">
-
-<br>
-
-<select onchange="changeColor(this.value)">
-<option value="">Select Color</option>
-<option value="obsidian">OBSIDIAN VOID</option>
-<option value="pale">PALE VOID</option>
-<option value="electric">ELECTRIC VOID</option>
-</select>
-
-<select id="size">
-<option value="">Select Size</option>
-<option>S</option>
-<option>M</option>
-<option>L</option>
-<option>XL</option>
-</select>
-
-<br>
-
-<button onclick="toggleView()">Switch Front/Back</button>
-<button onclick="buy()">Buy Now</button>
-
-</div>
-
-<script>
-let currentColor="obsidian";
-let view="front";
-
-function changeColor(c){
-currentColor=c;
-view="front";
-updateImage();
-}
-
-function toggleView(){
-view = view==="front"?"back":"front";
-updateImage();
-}
-
-function updateImage(){
-let img=document.getElementById("img");
-img.src=currentColor+"_"+view+".png";
-}
-
-function buy(){
-let size=document.getElementById("size").value;
-if(!size||!currentColor){alert("Select size & color");return;}
-let msg=`Order VOID V1 | ${currentColor.toUpperCase()} | Size: ${size}`;
-window.open("https://wa.me/?text="+encodeURIComponent(msg));
-}
-</script>
-
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>K-VOID</title>
+  </head>
+  <body style="margin:0;background:black;color:white;">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
