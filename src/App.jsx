@@ -1,12 +1,5 @@
 import React from "react";
 
-const products = [
-  {name:"VOID TEE", price:"RM89"},
-  {name:"SHADOW SHORTS", price:"RM79"},
-  {name:"DARK HOODIE", price:"RM129"},
-  {name:"VOID CAP", price:"RM49"}
-];
-
 export default function App() {
   return (
     <div style={{background:"black",color:"white",fontFamily:"Arial"}}>
@@ -16,8 +9,7 @@ export default function App() {
         <div>
           <a href="#home" style={{marginRight:"15px"}}>Home</a>
           <a href="#shop" style={{marginRight:"15px"}}>Shop</a>
-          <a href="#about" style={{marginRight:"15px"}}>About</a>
-          <a href="#contact">Contact</a>
+          <a href="https://instagram.com/kvoid.co" target="_blank">IG</a>
         </div>
       </nav>
 
@@ -29,27 +21,20 @@ export default function App() {
       <section id="shop" style={{padding:"100px 20px"}}>
         <h2 style={{textAlign:"center"}}>COLLECTION</h2>
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))",gap:"20px"}}>
-          {products.map((p,i)=>(
+          {["VOID TEE RM89","SHADOW SHORTS RM79","DARK HOODIE RM129"].map((item,i)=>(
             <div key={i} style={{background:"#111",padding:"20px"}}>
               <div style={{height:"150px",background:"#222",marginBottom:"10px"}}></div>
-              <h3>{p.name}</h3>
-              <p>{p.price}</p>
-              <button style={{width:"100%",padding:"10px",marginTop:"10px"}}>BUY</button>
+              <h3>{item}</h3>
             </div>
           ))}
         </div>
       </section>
 
-      <section id="about" style={{padding:"80px 20px",textAlign:"center"}}>
-        <h2>ABOUT</h2>
-        <p style={{color:"#aaa",maxWidth:"600px",margin:"auto"}}>
-          K-VOID is a dark performance wear brand built for those who reject limits and embrace discipline.
-        </p>
-      </section>
-
-      <section id="contact" style={{padding:"80px 20px",textAlign:"center"}}>
-        <h2>CONTACT</h2>
-        <p style={{color:"#aaa"}}>Instagram: @kvoid</p>
+      <section style={{padding:"80px 20px",textAlign:"center"}}>
+        <h2>FOLLOW US</h2>
+        <a href="https://instagram.com/kvoid.co" target="_blank" style={{display:"inline-block",marginTop:"20px",padding:"12px 24px",border:"1px solid white",color:"white",textDecoration:"none"}}>
+          @KVOID.CO
+        </a>
       </section>
 
       <footer style={{textAlign:"center",padding:"20px",borderTop:"1px solid #222"}}>
