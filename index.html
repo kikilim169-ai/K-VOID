@@ -1,12 +1,54 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>K-VOID</title>
-  </head>
-  <body style="margin:0;background:black;color:white;">
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>K-VOID</title>
+<style>
+body{background:black;color:white;font-family:Arial;text-align:center;}
+img{width:320px;border-radius:10px;}
+select,button{padding:10px;margin:10px;}
+</style>
+</head>
+<body>
+
+<h1>K-VOID</h1>
+<h2>VOID V1</h2>
+<p>$20.99 USD</p>
+
+<img id="img" src="obsidian_front.png">
+
+<br>
+
+<select onchange="changeColor(this.value)">
+<option value="">Select Color</option>
+<option value="obsidian">OBSIDIAN VOID</option>
+<option value="pale">PALE VOID</option>
+<option value="electric">ELECTRIC VOID</option>
+</select>
+
+<select>
+<option>S</option>
+<option>M</option>
+<option>L</option>
+<option>XL</option>
+</select>
+
+<br>
+
+<button onclick="buy()">Buy Now</button>
+
+<script>
+function changeColor(c){
+let img=document.getElementById("img");
+if(c==="obsidian") img.src="obsidian_front.png";
+if(c==="pale") img.src="pale_front.png";
+if(c==="electric") img.src="electric_front.png";
+}
+
+function buy(){
+alert("Order request sent!");
+}
+</script>
+
+</body>
 </html>
